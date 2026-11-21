@@ -33,7 +33,7 @@ A production-ready backend that uses Agentic AI to manage an inventory database.
 
 🏗️ Architecture Diagram
 
-![Architecture Diagram](https://raw.githubusercontent.com/jpablo1729/stock-ops-agents/blob/main/arch.png)
+![Architecture Diagram](https://github.com/jpablo1729/stock-ops-agents/blob/main/arch.png)
 
 
 🚦 Getting Started
