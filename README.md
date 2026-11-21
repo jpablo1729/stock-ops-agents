@@ -5,9 +5,13 @@ A production-ready backend that uses Agentic AI to manage an inventory database.
 🚀 Features
 
 . Multi-Agent Architecture: Built with pydantic-ai, featuring a Support Agent (database queries) and a Researcher Agent (web search via DuckDuckGo).
+
 . LLM Agnostic: Connects seamlessly to local LLMs via LM Studio (OpenAI-compatible API).
+
 . Persistent Memory: Chat histories are serialized and stored in PostgreSQL using SQLAlchemy.
+
 . Dockerized: Fully containerized environment with FastAPI, PostgreSQL, and Docker Compose.
+
 . Well-Tested: Includes Pytest API tests and HTTP request files for manual testing.
 
 🛠️ Tech Stack
