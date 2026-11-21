@@ -1,0 +1,78 @@
+AI AGENTS
+│
+├── 1. DEFINITION & FOUNDATIONS
+│   ├── What an agent is: a system that receives information, processes it, decides and acts
+│   ├── It is not just an LLM (like ChatGPT)
+│   └── Combination of: LLM + tools + memory + objective
+│
+├── 2. WHAT ARE THEY FOR?
+│   ├── Complex multi-step tasks (days/weeks/years)
+│   ├── Workflow automation
+│   └── They outperform the "simple prompt" used by 85% of people
+│
+├── 3. LEVELS OF AUTONOMY
+│   ├── Copilots/assistants → you decide
+│   ├── Semi-autonomous (with reasoning) → use tools (searches, downloads)
+│   └── Fully autonomous → "do it however you want"
+│
+├── 4. HOW DO THEY "THINK"?
+│   ├── They perform fast operations to predict the next word/operation
+│   ├── Context engineering → more and better context = better decisions
+│   └── Task decomposition → break the complex into simple
+│
+├── 5. KEY COMPONENTS OF THE AGENT
+│   ├── MEMORY
+│   │   ├── Short-term (current flow, like RAM)
+│   │   └── Long-term (hard drive: files, data, images)
+│   ├── GUARDRAILS
+│   │   ├── Limit behavior (e.g., only create/modify/delete certain files)
+│   │   └── Security first
+│   ├── REFLECTION
+│   │   ├── Self-evaluation and self-correction
+│   │   └── Two agents dialogue (argument/counterargument)
+│   └── TOOLS
+│       ├── Without tools: text only (very limited)
+│       └── With tools: internet, APIs, prices, calendar, email… (MCP servers)
+│
+├── 6. LIMIT OF THE SINGLE AGENT → MULTI-AGENT SOLUTION
+│   └── A single agent doesn't scale → ecosystems/societies of agents (agentic AI)
+│
+├── 7. MULTI-AGENT SYSTEMS
+│   ├── ROLES
+│   │   ├── Planner → splits the big task and assigns it
+│   │   ├── Executor → executes (each with its own tools)
+│   │   └── Reviewer → reviews, gives feedback, enables self-correction
+│   ├── COMMUNICATION
+│   │   ├── Messages between agents
+│   │   └── Risk: infinite loops → economic cost (paid APIs)
+│   └── FLOW DESIGN (pipelines)
+│       ├── Sequential (pipeline) → when a step depends on the previous one
+│       └── Parallel → independent tasks that are later aggregated
+│
+├── 8. DESIGN BEST PRACTICES
+│   ├── One agent = one task; very clear roles
+│   ├── If it plans, it doesn't execute; if it reviews, it doesn't plan
+│   ├── Simple communication and structured prompts
+│   └── Structured JSON outputs (agents love them)
+│
+├── 9. REAL PRODUCTION EXAMPLE (Stock-Ops Project)
+│   ├── Architecture: FastAPI + PostgreSQL + Docker
+│   ├── Orchestrator Agent (Support) → interacts with user and manages inventory DB:
+│   │   ├── Tool: list_catalog → lists all products with SKU, price, and stock
+│   │   ├── Tool: get_product_by_sku → retrieves details for a specific SKU
+│   │   └── Tool: reserve_stock → deducts stock from the database
+│   ├── Researcher Agent (Delegated) → performs web searches via DuckDuckGo (DDGS)
+│   ├── Local LLM (Qwen 3-4B) running via LM Studio
+│   └── Guardrails: strict prompts (no invented prices), Pydantic schemas for data validation
+│
+└── 10. TIPS BEFORE PRODUCTION
+    ├── PERFORMANCE
+    │   ├── Latency (fast responses)
+    │   └── Cost (concise prompts, minimal responses)
+    ├── OBSERVABILITY
+    │   ├── Logs, tracing
+    │   └── Know what failed, how long it took, which tool it used
+    └── SECURITY (critical)
+        ├── Control and validation of accesses/permissions
+        ├── Prompt injection (hidden scraped text)
+        └── Confirmation keywords ("autonomous madness")
