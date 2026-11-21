@@ -1,0 +1,42 @@
+### Environment Variables
+@hostname = 127.0.0.1
+@port = 8000
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+### 1. Get all products (Database)
+# Expected: A JSON list with the 100 seeded products
+GET http://{{host}}/api/v1/products
+Accept: application/json
+
+### 2. Chat with the Agent (Basic Test)
+# Expected: The agent replies to a greeting and queries the inventory
+POST http://{{host}}/api/v1/chat
+Content-Type: {{contentType}}
+
+{
+  "session_id": "test-session-http",
+  "user_id": "mando",
+  "message": "Hello, what sensor products do you have in stock?"
+}
+
+### 3. Chat with the Agent (Multi-Agent Delegation Test)
+# Expected: The agent queries the DB and delegates the web search to the Researcher Agent
+POST http://{{host}}/api/v1/chat
+Content-Type: {{contentType}}
+
+{
+  "session_id": "test-session-http",
+  "user_id": "mando",
+  "message": "Find an ESP32-S3 or similar product in our inventory and compare its price with the current market online."
+}
+
+### 4. View session history (Audit Endpoint)
+# Expected: A JSON trace of messages and tool calls used in the session
+GET http://{{host}}/api/v1/history/test-session-http
+Accept: application/json
+
+### 5. Test 404 Error (Non-existent session)
+# Expected: {"detail": "Session not found"}
+GET http://{{host}}/api/v1/history/session-that-does-not-exist
+Accept: application/json
