@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     app_name: str = "Backend Multi-Agent"
 
     # Use SecretStr to hide sensitive data in logs
-    database_url: SecretStr = SecretStr("postgresql://user:password@db:5432/agents_db")
+    database_url: SecretStr = SecretStr("postgresql+psycopg2://user:password@db:5432/agents_db")
 
     llm_base_url: str = "http://localhost:1234/v1"
     llm_api_key: SecretStr = SecretStr("lm-studio")
