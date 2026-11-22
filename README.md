@@ -70,3 +70,12 @@ III. API Usage
 🧪 Running Tests
 
 To run the test suite inside the Docker container without starting the whole stack: docker compose run --rm api pytest
+
+## 🔮 Future Work (Roadmap)
+
+This project is designed with scalability in mind. Here are the next steps planned to evolve this system into a production-grade enterprise application:
+
+*   **Authentication & Authorization (JWT)**: Implement JSON Web Tokens to secure the API. This will allow the `AgentDeps` class to dynamically inject user roles (e.g., admin, cashier, customer) directly from the decoded token.
+*   **Role-Based Access Control (RBAC)**: Add strict permission checks inside the agent tools. For example, ensure that only users with the "admin" role can execute the `reserve_stock` tool, providing a dual-layer of security (Prompt level + Python code level).
+*   **Frontend Interface**: Build a React or Vue.js frontend to replace the Swagger UI, providing a user-friendly chat interface and a visual dashboard for the inventory.
+*   **Automated CI/CD Pipelines**: Set up GitHub Actions to automatically run Pytest and build the Docker images on every push to the main branch.
